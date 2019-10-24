@@ -6,7 +6,7 @@
 	<title>天天生鲜-首页</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resource/css/main.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resource/js/slide.js"></script>
 </head>

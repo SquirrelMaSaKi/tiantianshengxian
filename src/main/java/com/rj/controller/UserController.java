@@ -1,6 +1,7 @@
 package com.rj.controller;
 
 import com.rj.pojo.User;
+import com.rj.service.CartService;
 import com.rj.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -19,6 +21,9 @@ import java.io.IOException;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/register")
     public String registerPage() {
@@ -50,13 +55,16 @@ public class UserController {
 
     @PostMapping("login")
     @ResponseBody
-    public String loginLogic(String username, String password, String rememberme) {
+    public String loginLogic(String username, String password, String rememberme, HttpSession session) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         if (rememberme != null && rememberme.trim().length() != 0) {
             token.setRememberMe(true);
         }
         subject.login(token);
+        User user = userService.findByUsernameOrEmail(username);
+        int size = cartService.findByUid(user.getId()).size();
+        session.setAttribute("size", size);
         return "ok";
     }
 

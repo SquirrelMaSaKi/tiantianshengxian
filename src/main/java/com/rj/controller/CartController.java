@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("/cart")
+@RequiresAuthentication
 public class CartController {
     @Autowired
     private CartService cartService;
@@ -27,14 +29,11 @@ public class CartController {
     @Autowired
     private GoodsDao goodsDao;
 
-    String username = (String) SecurityUtils.getSubject().getPrincipal();
-    User user = userService.findByUsernameOrEmail(username);
-
-
     @PostMapping("/addCart")
-    @RequiresAuthentication
     @ResponseBody
-    public Integer addCart(Integer gid, BigDecimal counts) {
+    public Integer addCart(Integer gid, BigDecimal counts, HttpSession session) {
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.findByUsernameOrEmail(username);
         Integer uid = user.getId();
         Cart cart = cartService.findByGid(gid);
         Goods goods = goodsDao.findByGoodId(gid);
@@ -49,13 +48,12 @@ public class CartController {
             Cart modCart = new Cart(uid, gid, num, money);
             cartService.modify(modCart);
         }
-
         Integer size = cartService.findByUid(uid).size();
+        session.setAttribute("size", size);
         return size;
     }
 
     @GetMapping("/showCart")
-    @RequiresAuthentication
     public String showCart() {
 
         return "cart";

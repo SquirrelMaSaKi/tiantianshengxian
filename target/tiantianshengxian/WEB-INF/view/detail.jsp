@@ -92,6 +92,16 @@
 	<div class="add_jump"></div>
 
 	<script type="text/javascript">
+
+
+        $("#headerDiv").load("${pageContext.request.contextPath}/user/header");
+        $("#searchDiv").load("${pageContext.request.contextPath}/user/searchHeader");
+        $("#newGoods").load("${pageContext.request.contextPath}/goodsType/type?typeid=${goodDetail.typeid}");
+        $("#fenleiheaderDiv").load("${pageContext.request.contextPath}/goodsType/fenleiheaderDiv");
+
+
+
+
 		$(function () {
 			var counts = 1;
             var price = '${goodDetail.price}';
@@ -123,37 +133,36 @@
         });
 
 
-
-        $("#headerDiv").load("${pageContext.request.contextPath}/user/header");
-        $("#searchDiv").load("${pageContext.request.contextPath}/user/searchHeader");
-        $("#newGoods").load("${pageContext.request.contextPath}/goodsType/type?typeid=${goodDetail.typeid}");
-        $("#fenleiheaderDiv").load("${pageContext.request.contextPath}/goodsType/fenleiheaderDiv");
-
-		var $add_x = $('#add_cart').offset().top;
-		var $add_y = $('#add_cart').offset().left;
-
-		var $to_x = $('#show_count').offset().top;
-		var $to_y = $('#show_count').offset().left;
-
-		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
-		$('#add_cart').click(function(){
+        $('#add_cart').click(function(){
             var counts = $("#counts").val();
-			$(".add_jump").stop().animate({
-				'left': $to_y+7,
-				'top': $to_x+7},
-				"fast", function() {
-					$(".add_jump").fadeOut('fast',function(){
+            $(".add_jump").stop().animate({
+                    'left': $to_y+7,
+                    'top': $to_x+7},
+                "fast", function() {
+                    $(".add_jump").fadeOut('fast',function(){
                         $.ajax({
                             url:"${pageContext.request.contextPath}/cart/addCart",
                             type:"post",
                             data:"counts="+counts+"&gid=${goodDetail.id}",
-							success:function (size) {
-                                $('#show_count').html(size);
+                            success:function (size) {
+                                $('#show_count').text(size);
                             }
                         });
-					});
-			});
-		})
+                    });
+                });
+        })
+
+        var $add_x = $('#add_cart').offset().top;
+        var $add_y = $('#add_cart').offset().left;
+
+        var $to_x = $('#show_count').offset().top;
+        var $to_y = $('#show_count').offset().left;
+
+        $(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'});
+
+
+
+
 	</script>
 	
 </body>

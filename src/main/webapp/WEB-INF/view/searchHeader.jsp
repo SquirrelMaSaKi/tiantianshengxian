@@ -16,7 +16,7 @@
     </div>
     <div class="guest_cart fr">
         <a href="${pageContext.request.contextPath}/cart/showCart" class="cart_name fl">我的购物车</a>
-        <shiro:user><div class="goods_count fl" id="show_count"></div></shiro:user>
+        <shiro:user><div class="goods_count fl" id="show_count">${size}</div></shiro:user>
     </div>
 </div>
 <script type="text/javascript">
