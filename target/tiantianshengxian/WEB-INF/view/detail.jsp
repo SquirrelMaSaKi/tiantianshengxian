@@ -38,12 +38,12 @@
 			<div class="goods_num clearfix">
 				<div class="num_name fl">数 量：</div>
 				<div class="num_add fl">
-					<input type="text" class="num_show fl" value="1">
-					<a href="javascript:;" class="add fr">+</a>
-					<a href="javascript:;" class="minus fr">-</a>	
+					<input type="text" class="num_show fl" value="1" id="counts">
+					<a href="javascript:;" class="add fr" id="plus">+</a>
+					<a href="javascript:;" class="minus fr" id="sub">-</a>
 				</div> 
 			</div>
-			<div class="total">总价：<em>${goodDetail.price}元</em></div>
+			<div class="total">总价：<em id="totalPrice">${goodDetail.price} 元</em></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
 				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
@@ -92,6 +92,37 @@
 	<div class="add_jump"></div>
 
 	<script type="text/javascript">
+		$(function () {
+			var counts = 1;
+            var price = '${goodDetail.price}';
+            var total;
+            $("#counts").blur(function () {
+                counts = $("#counts").val();
+                if(counts < 1){
+                    counts = 1;
+                }
+                total = (price*counts).toFixed(2);
+                $("#totalPrice").text(total+" 元");
+                $("#counts").val(counts);
+            });
+            $("#plus").click(function () {
+				counts++;
+                total = (price*counts).toFixed(2);
+                $("#totalPrice").text(total+" 元");
+                $("#counts").val(counts);
+            });
+            $("#sub").click(function () {
+                counts--;
+                if(counts < 1){
+                    counts = 1;
+                }
+                total = (price*counts).toFixed(2);
+                $("#totalPrice").text(total+" 元");
+                $("#counts").val(counts);
+            });
+        });
+
+
 
         $("#headerDiv").load("${pageContext.request.contextPath}/user/header");
         $("#searchDiv").load("${pageContext.request.contextPath}/user/searchHeader");
