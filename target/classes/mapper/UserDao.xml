@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rj.dao.UserDao">
+    <insert id="add">
+        insert into user(username,password,email,salt) values (#{username},#{password},#{email},#{salt})
+    </insert>
+
+    <select id="findByUsernameOrEmail" resultType="com.rj.pojo.User">
+        select * from user
+        <trim prefix="where" prefixOverrides="AND |OR">
+          <if test="ue != null and ue != ''">
+              and username like #{ue} or email like #{ue}
+          </if>
+        </trim>
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 海马哥
+  Date: 2019/10/23
+  Time: 16:20
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div class="search_bar clearfix">
+    <a href="../../index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/resource/images/logo.png"></a>
+    <div class="search_con fl">
+        <input type="text" class="input_text fl" name="" placeholder="搜索商品" id="searchGoods">
+        <input type="button" class="input_btn fr" name="" value="搜索" id="btn1">
+    </div>
+    <div class="guest_cart fr">
+        <a href="cart.jsp" class="cart_name fl">我的购物车</a>
+        <div class="goods_count fl" id="show_count">1</div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#btn1").click(function () {
+        var search = $("#searchGoods").val();
+        location.href="${pageContext.request.contextPath}/goods/goodsList?condition="+search+"";
+    });
+</script>

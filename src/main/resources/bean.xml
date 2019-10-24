@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--aop、tx事务、context注解和导入外部文件-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--连接池-->
+    <context:property-placeholder location="classpath:druid.properties"/>
+    <bean id="druid" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--基本属性-->
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!--详细参数-->
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${jdbc.validationQuery}"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+    </bean>
+
+    <!--SqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <!--连接池引入-->
+        <property name="dataSource" ref="druid"/>
+
+        <!--mapper文件信息，如果mapper文件和dao接口在一个包下，而且同名，则该注入可以省略-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <!--别名-->
+        <property name="typeAliasesPackage" value="com.rj.pojo"/>
+
+        <!--pageHelper分页插件，页号自动回归到合理数值property-->
+        <property name="plugins">
+            <list>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            resonable=true
+                        </value>
+                    </property>
+                </bean>
+            </list>
+        </property>
+
+        <!-- 驼峰命名法自动转换 -->
+        <!--<property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="mapUnderscoreToCamelCase" value="true"/>
+            </bean>
+        </property>-->
+    </bean>
+
+    <!--getMapper：MapperScannerConfigurer-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--接口，可以使用逗号或者分号设置多个包-->
+        <property name="basePackage" value="com.rj.dao"/>
+        <!--sqlSession，如果当前工厂中只有一个sqlSessionFactory，则可以省略-->
+        <!--<property name="sqlSessionFactoryBeanName"  value="sqlSessionFactory"/>-->
+    </bean>
+
+    <!--事务管理器-->
+    <bean id="tx" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--引入数据源头-->
+        <property name="dataSource" ref="druid"/>
+    </bean>
+
+    <!-- 告知Spring唯独不扫描@Controller注解的类 -->
+    <context:component-scan base-package="com.rj" use-default-filters="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--告诉Spring哪个组件是管理事务的，支持@Transational 从而实现事务-->
+    <tx:annotation-driven transaction-manager="tx"/>
+    <!--支持@AspectJ的aop注解方式，打开开关-->
+    <aop:aspectj-autoproxy/>
+
+    <!--管理shiro_applicationContext.xml文件-->
+    <import resource="classpath:shiro_bean.xml"/>
+    <!--管理redis_applicationContext.xml文件-->
+    <!--<import resource="classpath:redis_applicationContext.xml"/>-->
+</beans>
