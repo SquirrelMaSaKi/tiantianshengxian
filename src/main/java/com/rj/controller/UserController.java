@@ -28,9 +28,7 @@ public class UserController {
     @PostMapping("/register")
     @ResponseBody
     public String registerLogic(User user) throws IOException {
-        System.out.println(user);
         userService.add(user);
-        System.out.println("添加成功");
         return "ok";
     }
 
@@ -59,7 +57,6 @@ public class UserController {
             token.setRememberMe(true);
         }
         subject.login(token);
-        System.out.println("登录成功");
         return "ok";
     }
 
@@ -67,7 +64,6 @@ public class UserController {
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        System.out.println("退出登录");
         return "redirect:/index.jsp";
     }
 

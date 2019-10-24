@@ -46,7 +46,7 @@
 			<div class="total">总价：<em id="totalPrice">${goodDetail.price} 元</em></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
-				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
+				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
 			</div>
 		</div>
 	</div>
@@ -137,18 +137,23 @@
 
 		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
 		$('#add_cart').click(function(){
+            var counts = $("#counts").val();
 			$(".add_jump").stop().animate({
 				'left': $to_y+7,
 				'top': $to_x+7},
 				"fast", function() {
 					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
+                        $.ajax({
+                            url:"${pageContext.request.contextPath}/cart/addCart",
+                            type:"post",
+                            data:"counts="+counts+"&gid=${goodDetail.id}",
+							success:function (size) {
+                                $('#show_count').html(size);
+                            }
+                        });
 					});
-
 			});
 		})
-
-
 	</script>
 	
 </body>

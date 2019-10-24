@@ -43,7 +43,6 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="xxx.jsp"%>
 	<div class="footer no-mp">
 		<div class="foot_link">
 			<a href="#">关于我们</a>
