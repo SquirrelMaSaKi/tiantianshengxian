@@ -148,8 +148,8 @@
                                 $('#show_count').text(size);
                             }
                         });
-                    });
-                });
+                 	});
+            });
         })
 
         var $add_x = $('#add_cart').offset().top;

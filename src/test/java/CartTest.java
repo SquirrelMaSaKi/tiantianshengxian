@@ -51,11 +51,7 @@ public class CartTest {
     }
     @Test
     public void testCartDaoFindByGid() {
-        Cart cart = cartDao.findByGid(1);
+        Cart cart = cartDao.findByGidAndUid(1,1);
         System.out.println(cart.toString());
-    }
-    @Test
-    public void testCartDaoDeleteByGid() {
-        cartDao.deleteByGid(2);
     }
 }

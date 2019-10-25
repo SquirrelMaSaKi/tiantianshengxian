@@ -7,15 +7,15 @@
         insert into cart(uid,gid,num,money) values (#{uid},#{gid},#{num},#{money})
     </insert>
     <update id="modify">
-        update cart set num=#{num},money=#{money} where gid=#{gid}
+        update cart set num=#{num},money=#{money} where uid=#{uid} and gid=#{gid}
     </update>
-    <delete id="deleteByGid">
-        delete from cart where gid=#{gid}
+    <delete id="deleteByGidAndUid">
+        delete from cart where uid=#{uid} and gid=#{gid}
     </delete>
     <select id="findByUid" resultType="com.rj.pojo.Cart">
         select * from cart where uid=#{uid}
     </select>
-    <select id="findByGid" resultType="com.rj.pojo.Cart">
-        select * from cart where gid=#{gid}
+    <select id="findByGidAndUid" resultType="com.rj.pojo.Cart">
+        select * from cart where  uid=#{uid} and gid=#{gid}
     </select>
 </mapper>
