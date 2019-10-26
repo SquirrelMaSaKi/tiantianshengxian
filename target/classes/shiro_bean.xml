@@ -32,9 +32,9 @@
     </bean>
 
     <!--redis的shiro-RBAC缓存管理注入-->
-    <!--<bean id="shiroCacheManager" class="com.rj.cache.MyShiroCacheManager">-->
-        <!--<property name="redisTemplate" ref="redisTemplate"/>-->
-    <!--</bean>-->
+    <bean id="shiroCacheManager" class="com.rj.cache.MyShiroCacheManager">
+        <property name="template" ref="redisTemplate"/>
+    </bean>
 
     <!--自定义记住我的cookie的属性-->
     <bean id="remembermecookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -56,13 +56,13 @@
         <!--<property name="maxAge" value="-1"/>-->
     <!--</bean>-->
     <!--&lt;!&ndash;将自定义好的sessionCookie注入DefaultWebSessionManager管理类&ndash;&gt;-->
-    <!--<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">-->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!--&lt;!&ndash;引入sessionDao，redis分布式会话管理&ndash;&gt;-->
-        <!--<property name="sessionDAO">-->
-            <!--<bean class="com.rj.session.MySessionDao">-->
-                <!--<property name="template" ref="redisTemplate2"/>-->
-            <!--</bean>-->
-        <!--</property>-->
+        <property name="sessionDAO">
+            <bean class="com.rj.cache.MySessionDao">
+                <property name="template" ref="redisTemplate2"/>
+            </bean>
+        </property>
         <!--&lt;!&ndash; 默认值和配置中给出的一致，所bean:sessionIdCookie 可以省略 &ndash;&gt;-->
         <!--<property name="sessionIdCookie" ref="sessionCookie"/>-->
         <!--&lt;!&ndash; session全局超时时间, 单位:毫秒 ，默认值为1800000，30分钟&ndash;&gt;-->
@@ -76,14 +76,14 @@
         <!--&lt;!&ndash;开启检测器，默认开启，单位毫秒，默认1小时&ndash;&gt;-->
         <!--<property name="sessionValidationSchedulerEnabled" value="true"/>-->
         <!--<property name="sessionValidationInterval" value="40000"/>-->
-    <!--</bean>-->
+    </bean>
 
     <!-- 声明SecurityManager核心组件，将自定义的realm注入到SecurityManager -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="myRealm"/>
-        <!--<property name="cacheManager" ref="shiroCacheManager"/>-->
+        <property name="cacheManager" ref="shiroCacheManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
-        <!--<property name="sessionManager" ref="sessionManager"/>-->
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
     <!-- 生产SpringShiroFilter，注入SecurityManager核心组件，logout自定义-->

@@ -92,5 +92,5 @@
     <!--管理shiro_applicationContext.xml文件-->
     <import resource="classpath:shiro_bean.xml"/>
     <!--管理redis_applicationContext.xml文件-->
-    <!--<import resource="classpath:redis_applicationContext.xml"/>-->
+    <import resource="classpath:redis_bean.xml"/>
 </beans>

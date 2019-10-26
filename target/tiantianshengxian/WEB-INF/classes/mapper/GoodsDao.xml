@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rj.dao.GoodsDao">
+    <cache type="com.rj.cache.MyBatisCache"/>
     <select id="findByTypeId" resultType="com.rj.pojo.Goods">
         select * from goods where typeid=#{typeId}
         order by upshelf desc
