@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -45,8 +46,14 @@
 			</div>
 			<div class="total">总价：<em id="totalPrice">${goodDetail.price} 元</em></div>
 			<div class="operate_btn">
-				<a href="javascript:;" class="buy_btn">立即购买</a>
-				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
+				<shiro:authenticated>
+					<a href="javascript:;" class="buy_btn">立即购买</a>
+					<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
+				</shiro:authenticated>
+				<shiro:notAuthenticated>
+					<a href="javascript:;" class="buy_btn">立即购买</a>
+					<a href="javascript:;" class="add_cart" id="add_cartno">加入购物车</a>
+				</shiro:notAuthenticated>
 			</div>
 		</div>
 	</div>
@@ -151,6 +158,12 @@
                  	});
             });
         })
+        $("#add_cartno").click(function () {
+            // $.ajax(function () {
+			//
+            // });
+			location.href="${pageContext.request.contextPath}/user/login";
+        });
 
         var $add_x = $('#add_cart').offset().top;
         var $add_y = $('#add_cart').offset().left;
