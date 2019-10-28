@@ -27,7 +27,7 @@
 	<c:forEach items="${carts}" var="c">
 		<ul class="cart_list_td clearfix" id="ul${c.gid}">
 			<li class="col01"><input type="checkbox" name="checkcart" checked="true" id="check${c.gid}" onclick="checkCart(${c.gid},${gids})"></li>
-			<li class="col02"><img src="${pageContext.request.contextPath}/resource/images/goods/${c.goods.img}"></li>
+			<li class="col02"><img src="${pageContext.request.contextPath}/goodsimg/${c.goods.img}"></li>
 			<li class="col03">${c.goods.goodsname}<br><em>${c.goods.price}元/500g</em></li>
 			<li class="col04">500g</li>
 			<li class="col05">${c.goods.price}元</li>

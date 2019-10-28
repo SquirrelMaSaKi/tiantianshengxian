@@ -12,7 +12,7 @@
 <body>
 	<div class="register_con">
 		<div class="l_con fl">
-			<a class="reg_logo"><img src="${pageContext.request.contextPath}/resource/images/logo02.png"></a>
+			<a class="reg_logo"><img src="${pageContext.request.contextPath}/goodsimg/logo02.png"></a>
 			<div class="reg_slogan">足不出户  ·  新鲜每一天</div>
 			<div class="reg_banner"></div>
 		</div>

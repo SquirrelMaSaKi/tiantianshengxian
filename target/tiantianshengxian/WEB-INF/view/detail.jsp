@@ -27,7 +27,7 @@
 	</div>
 
 	<div class="goods_detail_con clearfix">
-		<div class="goods_detail_pic fl"><img src="${pageContext.request.contextPath}/resource/images/${goodDetail.imgdetail}"></div>
+		<div class="goods_detail_pic fl"><img src="${pageContext.request.contextPath}/goodsimg/${goodDetail.imgdetail}" style="width: 300px"></div>
 
 		<div class="goods_detail_list fr">
 			<h3>${goodDetail.goodsname}</h3>

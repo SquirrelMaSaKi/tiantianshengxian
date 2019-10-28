@@ -33,18 +33,18 @@
 
 		<div class="slide fl">
 			<ul class="slide_pics">
-				<li><img src="${pageContext.request.contextPath}/resource/images/slide.jpg" alt="幻灯片"></li>
-				<li><img src="${pageContext.request.contextPath}/resource/images/slide02.jpg" alt="幻灯片"></li>
-				<li><img src="${pageContext.request.contextPath}/resource/images/slide03.jpg" alt="幻灯片"></li>
-				<li><img src="${pageContext.request.contextPath}/resource/images/slide04.jpg" alt="幻灯片"></li>
+				<li><img src="${pageContext.request.contextPath}/goodsimg/slide.jpg" alt="幻灯片"></li>
+				<li><img src="${pageContext.request.contextPath}/goodsimg/slide02.jpg" alt="幻灯片"></li>
+				<li><img src="${pageContext.request.contextPath}/goodsimg/slide03.jpg" alt="幻灯片"></li>
+				<li><img src="${pageContext.request.contextPath}/goodsimg/slide04.jpg" alt="幻灯片"></li>
 			</ul>
 			<div class="prev"></div>
 			<div class="next"></div>
 			<ul class="points"></ul>
 		</div>
 		<div class="adv fl">
-			<a href="#"><img src="${pageContext.request.contextPath}/resource/images/adv01.jpg"></a>
-			<a href="#"><img src="${pageContext.request.contextPath}/resource/images/adv02.jpg"></a>
+			<a href="#"><img src="${pageContext.request.contextPath}/goodsimg/adv01.jpg"></a>
+			<a href="#"><img src="${pageContext.request.contextPath}/goodsimg/adv02.jpg"></a>
 		</div>
 	</div>
 

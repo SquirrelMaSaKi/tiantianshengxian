@@ -10,7 +10,7 @@
 <ul>
     <c:forEach items="${type.goods}" var="goods" end="1">
         <li>
-            <a href="#"><img src="${pageContext.request.contextPath}/resource/images/goods/${goods.img}"></a>
+            <a href="#"><img src="${pageContext.request.contextPath}/goodsimg/${goods.img}"></a>
             <h4><a href="#">${goods.goodsname}</a></h4>
             <div class="prize">￥${goods.price}</div>
         </li>

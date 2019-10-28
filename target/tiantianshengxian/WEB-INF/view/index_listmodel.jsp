@@ -24,13 +24,13 @@
             </div>
 
             <div class="goods_con clearfix">
-                <div class="goods_banner fl"><img src="${pageContext.request.contextPath}/resource/images/${type.headimg}"></div>
+                <div class="goods_banner fl"><img src="${pageContext.request.contextPath}/goodsimg/${type.headimg}"></div>
 
                 <ul class="goods_list fl">
                     <c:forEach items="${type.goods}" var="goods">
                         <li>
                             <h4><a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}">${goods.goodsname}</a></h4>
-                            <a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/resource/images/goods/${goods.img}"></a>
+                            <a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/goodsimg/${goods.img}"></a>
                             <div class="prize">¥ ${goods.price}</div>
                         </li>
                     </c:forEach>

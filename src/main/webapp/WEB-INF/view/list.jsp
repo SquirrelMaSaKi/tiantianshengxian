@@ -30,7 +30,7 @@
 				<ul>
 					<c:forEach items="${pageBean.list}" var="goods" end="1">
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/resource/images/goods/${goods.img}"></a>
+							<a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/goodsimg/${goods.img}"></a>
 							<h4><a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}">${goods.goodsname}</a></h4>
 							<div class="prize">${goods.price}</div>
 						</li>
@@ -49,7 +49,7 @@
 			<ul class="goods_type_list clearfix">
 				<c:forEach items="${pageBean.list}" var="goods">
 					<li>
-						<a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/resource/images/goods/${goods.img}"></a>
+						<a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}"><img src="${pageContext.request.contextPath}/goodsimg/${goods.img}"></a>
 						<h4><a href="${pageContext.request.contextPath}/goods/goodDetail?goodId=${goods.id}">${goods.goodsname}</a></h4>
 						<div class="prize">${goods.price}</div>
 					</li>

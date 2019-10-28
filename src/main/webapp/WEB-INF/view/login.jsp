@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="login_top clearfix">
-		<a href="${pageContext.request.contextPath}/index.jsp" class="login_logo"><img src="${pageContext.request.contextPath}/resource/images/logo02.png"></a>
+		<a href="${pageContext.request.contextPath}/index.jsp" class="login_logo"><img src="${pageContext.request.contextPath}/goodsimg/logo02.png"></a>
 	</div>
 
 	<div class="login_form_bg">
@@ -70,11 +70,11 @@
 			data:{"code":code},
 			success:function (data) {
 				if(data=='ok') {
-				    $("#panduan").attr("src","${pageContext.request.contextPath}/resource/images/panduan/duigou.jpg");
+				    $("#panduan").attr("src","${pageContext.request.contextPath}/goodsimg/duigou.jpg");
 					$("#panduan").attr("hidden",false);
 					$("#btn1").attr("disabled",false);
 				}else if(data=='no') {
-                    $("#panduan").attr("src","${pageContext.request.contextPath}/resource/images/panduan/cuocha.jpg");
+                    $("#panduan").attr("src","${pageContext.request.contextPath}/goodsimg/cuocha.jpg");
                     $("#panduan").attr("hidden",false);
                 }
             }

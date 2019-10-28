@@ -9,7 +9,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <div class="search_bar clearfix">
-    <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/resource/images/logo.png"></a>
+    <a href="${pageContext.request.contextPath}/index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/goodsimg/logo.png"></a>
     <div class="search_con fl">
         <input type="text" class="input_text fl" name="" placeholder="搜索商品" id="searchGoods">
         <input type="button" class="input_btn fr" name="" value="搜索" id="btn1">

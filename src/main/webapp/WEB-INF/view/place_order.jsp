@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="search_bar clearfix">
-		<a href="../../index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/resource/images/logo.png"></a>
+		<a href="../../index.jsp" class="logo fl"><img src="${pageContext.request.contextPath}/goodsimg/logo.png"></a>
 		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;提交订单</div>
 		<div class="search_con fr">
 			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
@@ -78,7 +78,7 @@
 		</ul>
 		<ul class="goods_list_td clearfix">
 			<li class="col01">1</li>			
-			<li class="col02"><img src="${pageContext.request.contextPath}/resource/images/goods/goods012.jpg"></li>
+			<li class="col02"><img src="${pageContext.request.contextPath}/goodsimg/goods012.jpg"></li>
 			<li class="col03">奇异果</li>
 			<li class="col04">500g</li>
 			<li class="col05">25.80元</li>
@@ -87,7 +87,7 @@
 		</ul>
 		<ul class="goods_list_td clearfix">
 			<li class="col01">2</li>			
-			<li class="col02"><img src="${pageContext.request.contextPath}/resource/images/goods/goods003.jpg"></li>
+			<li class="col02"><img src="${pageContext.request.contextPath}/goodsimg/goods003.jpg"></li>
 			<li class="col03">大兴大棚草莓</li>
 			<li class="col04">500g</li>
 			<li class="col05">16.80元</li>
